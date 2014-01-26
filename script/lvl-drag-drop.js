@@ -61,8 +61,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
 	                e.preventDefault(); // Necessary. Allows us to drop.
 	              }
 
-	              if (e.stopPropogation) {
-	                e.stopPropogation(); // Necessary. Allows us to drop.
+	              if (e.stopPropagation) {
+	                e.stopPropagation(); // Necessary. Allows us to drop.
 	              }
 	            	var data = e.dataTransfer.getData("text");
 	                var dest = document.getElementById(id);

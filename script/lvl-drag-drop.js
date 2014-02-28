@@ -8,7 +8,7 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uu
 
 			var id = angular.element(el).attr("id");
 			if (!id) {
-				id = uuid.new()
+				id = uuid.new();
 				angular.element(el).attr("id", id);
 			}
 
@@ -34,7 +34,7 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
 		link: function (scope, el, attrs, controller) {
 			var id = angular.element(el).attr("id");
 			if (!id) {
-				id = uuid.new()
+				id = uuid.new();
 				angular.element(el).attr("id", id);
 			}
 

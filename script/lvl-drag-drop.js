@@ -65,8 +65,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
 	                e.stopPropagation(); // Necessary. Allows us to drop.
 	              }
 	            	var data = e.dataTransfer.getData("text");
-	                var dest = document.getElementById(id);
-	                var src = document.getElementById(data);
+	                var dest = id;
+	                var src = data;
 	                
 	                scope.onDrop({dragEl: src, dropEl: dest});
 	            });

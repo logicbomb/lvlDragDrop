@@ -6,7 +6,7 @@
     "Jason Turim"
   ],
   "description": "An easy to use, native, directive to enable drag/drop in your angular app. This directive has no dependency on jQuery or other frameworks, it does require a browser that supports the HTML5 drag/drop events",
-  "main": "script/lvl-drag-drop.js",
+  "main": ["script/lvl-drag-drop.js", "script/lvl-uuid.js"],
   "keywords": [
     "drag",
     "drop",

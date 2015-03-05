@@ -13,3 +13,10 @@ A very simple service for working with [UUIDs](http://en.wikipedia.org/wiki/Univ
 [Live Demo](http://logicbomb.github.io/ng-directives/uuid.html)
 
 [Documentation](http://jasonturim.wordpress.com/2013/09/01/angularjs-drag-and-drop/)
+
+## dataTransfer hack
+
+The jQuery event object does not have a dataTransfer property... true, but one can try:
+
+
+    jQuery.event.props.push('dataTransfer');

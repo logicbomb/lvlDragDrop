@@ -69,7 +69,9 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
                 var dest = document.getElementById(id);
                 var src = document.getElementById(data);
 
-                scope.onDrop({dragEl: data, dropEl: id});
+                var keys = {'ctrl': e.ctrlKey, 'alt' : e.altKey, 'shift' : e.shiftKey}; // register the keys was pressed during the drag and drop
+
+                scope.onDrop({dragEl: data, dropEl: id, keysPressed: keys});
             });
 
             $rootScope.$on("LVL-DRAG-START", function () {

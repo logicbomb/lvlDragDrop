@@ -1,6 +1,7 @@
 #Native AngularJs drag and drop directive#
 
 An easy to use, native, directive to enable drag/drop in your angular app.  This directive has no dependency on jQuery or other frameworks, it does require a browser that supports the HTML5 drag/drop events.
+You can combine keys (ctrl, alt, shift) with the drag and drop.
 
 [Live Demo](http://logicbomb.github.io/ng-directives/drag-drop.html)
 

@@ -6,6 +6,13 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uu
         link: function (scope, el, attrs, controller) {
             angular.element(el).attr("draggable", "true");
 
+            var fromID = angular.element(el[0].parentNode).attr('id');
+			
+			if (!fromID) {
+				fromID = uuid.new();
+                angular.element(el[0].parentNode).attr('id', fromID);
+			}
+
             var id = angular.element(el).attr("id");
 
             if (!id) {
@@ -14,7 +21,8 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uu
             }
             console.log(id);
             el.bind("dragstart", function (e) {
-                e.dataTransfer.setData('text', id);
+                e.dataTransfer.setData('text', id
+                e.dataTransfer.setData('from', fromID);
                 console.log('drag');
                 $rootScope.$emit("LVL-DRAG-START");
             });
@@ -66,12 +74,13 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
                     e.stopPropagation(); // Necessary. Allows us to drop.
                 }
                 var data = e.dataTransfer.getData("text");
+                var from = e.dataTransfer.getData("from");
                 var dest = document.getElementById(id);
                 var src = document.getElementById(data);
 
                 var keys = {'ctrl': e.ctrlKey, 'alt' : e.altKey, 'shift' : e.shiftKey}; // register the keys was pressed during the drag and drop
 
-                scope.onDrop({dragEl: data, dropEl: id, keysPressed: keys});
+                scope.onDrop({dragEl: data, dropEl: id, keysPressed: keys, fromEl: from});
             });
 
             $rootScope.$on("LVL-DRAG-START", function () {

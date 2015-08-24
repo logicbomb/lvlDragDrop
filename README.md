@@ -13,6 +13,17 @@ Now combine keys (ctrl, alt, shift) with the drag and drop.
         }
     }
 
+Get the FROM element of a drag element.
+
+    <div x-on-drop='dropped(dragEl, dropEl, keysPressed, fromEl)'>dragme</div>
+    ...
+    $scope.dropped(dragEl, dropEl, keysPressed, fromEl) {
+        // parent element before do drag and drop
+            console.log("I was dragged from "+fromEl+" element.");
+        
+        }
+    }
+
 [Live Demo](http://logicbomb.github.io/ng-directives/drag-drop.html)
 
 [Documentation](http://jasonturim.wordpress.com/2013/09/01/angularjs-drag-and-drop/)

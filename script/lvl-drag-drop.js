@@ -30,7 +30,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
     return {
         restrict: 'A',
         scope: {
-            onDrop: '&'
+            onDrop: '&',
+            onOver: '&'
         },
         link: function (scope, el, attrs, controller) {
             var id = angular.element(el).attr("id");
@@ -51,6 +52,10 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
             el.bind("dragenter", function (e) {
                 // this / e.target is the current hover target.
                 angular.element(e.target).addClass('lvl-over');
+                var data = e.dataTransfer.getData("text");
+                var dest = document.getElementById(id);
+                var src = document.getElementById(data);
+                scope.onOver({dragEl: data, dropEl: id});
             });
 
             el.bind("dragleave", function (e) {

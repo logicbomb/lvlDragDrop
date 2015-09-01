@@ -8,10 +8,10 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uu
 
             var fromID = angular.element(el[0].parentNode).attr('id');
 			
-			if (!fromID) {
-				fromID = uuid.new();
+            if (!fromID) {
+                fromID = uuid.new();
                 angular.element(el[0].parentNode).attr('id', fromID);
-			}
+            }
 
             var id = angular.element(el).attr("id");
 

@@ -31,7 +31,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
         restrict: 'A',
         scope: {
             onDrop: '&',
-            onOver: '&'
+            onOver: '&',
+            onEnd: '&'
         },
         link: function (scope, el, attrs, controller) {
             var id = angular.element(el).attr("id");
@@ -86,6 +87,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
                 var el = document.getElementById(id);
                 angular.element(el).removeClass("lvl-target");
                 angular.element(el).removeClass("lvl-over");
+                
+                scope.onEnd();
             });
         }
     };

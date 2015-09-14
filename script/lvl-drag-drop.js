@@ -51,14 +51,7 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
             });
 
             el.bind("dragenter", function (e) {
-                 if (e.preventDefault) {
-                    e.preventDefault(); // Necessary. Allows us to drop.
-                }
-
-                if (e.stopPropagation) {
-                    e.stopPropagation(); // Necessary. Allows us to drop.
-                }
-                // this / e.target is the current hover target.
+               // this / e.target is the current hover target.
                 angular.element(e.target).addClass('lvl-over');
                 var data = e.originalEvent.dataTransfer.getData("text"); // returns empty string
                 var data = e.originalEvent.srcElement.id; // seems to get the parent element of the dropped on element

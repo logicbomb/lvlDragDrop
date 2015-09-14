@@ -14,7 +14,7 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uu
             }
             console.log(id);
             el.bind("dragstart", function (e) {
-                e.dataTransfer.setData('text', id);
+                e.originalEvent.dataTransfer.setData('text', id);
                 console.log('drag');
                 $rootScope.$emit("LVL-DRAG-START");
             });
@@ -46,16 +46,23 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
                     e.preventDefault(); // Necessary. Allows us to drop.
                 }
 
-                e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+                e.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
                 return false;
             });
 
             el.bind("dragenter", function (e) {
+                 if (e.preventDefault) {
+                    e.preventDefault(); // Necessary. Allows us to drop.
+                }
+
+                if (e.stopPropagation) {
+                    e.stopPropagation(); // Necessary. Allows us to drop.
+                }
                 // this / e.target is the current hover target.
                 angular.element(e.target).addClass('lvl-over');
-                var data = e.dataTransfer.getData("text");
-                var dest = document.getElementById(id);
-                var src = document.getElementById(data);
+                var data = e.originalEvent.dataTransfer.getData("text"); // returns empty string
+                var data = e.originalEvent.srcElement.id; // seems to get the parent element of the dropped on element
+                var data = this.id; // same as dropEl
                 scope.onOver({dragEl: data, dropEl: id});
             });
 
@@ -71,7 +78,7 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, u
                 if (e.stopPropagation) {
                     e.stopPropagation(); // Necessary. Allows us to drop.
                 }
-                var data = e.dataTransfer.getData("text");
+                var data = e.originalEvent.dataTransfer.getData("text");
                 var dest = document.getElementById(id);
                 var src = document.getElementById(data);
 
